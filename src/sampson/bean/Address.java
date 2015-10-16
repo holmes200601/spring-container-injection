@@ -4,6 +4,11 @@ public class Address {
 	private String 		detailInfo;
 	private String      postCode;
 	
+	public Address(String info, String code) {
+		this.setDetailInfo(info);
+		this.setPostCode(code);
+	}
+	
 	public String getDetailInfo() {
 		return detailInfo;
 	}

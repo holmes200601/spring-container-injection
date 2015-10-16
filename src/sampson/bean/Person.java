@@ -3,18 +3,23 @@ package sampson.bean;
 import sampson.enumeration.Gender;
 
 public abstract class Person {
-	private String Name;
+	private String name;
 	private String phone; // Need validation
 	private Integer age;
-	private Gender gener;
-	private String qq;
-	private String wechat;
+	private Gender gender;
+	
+	public Person(String name, String phone, Integer age, Gender gender) {
+		this.setName(name);
+		this.setPhone(phone);
+		this.setAge(age);
+		this.setGender(gender);
+	}
 	
 	public String getName() {
-		return Name;
+		return name;
 	}
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 	public String getPhone() {
 		return phone;
@@ -28,25 +33,12 @@ public abstract class Person {
 	public void setAge(Integer age) {
 		this.age = age;
 	}
-	public Gender getGener() {
-		return gener;
+	public Gender getGender() {
+		return gender;
 	}
-	public void setGener(Gender gener) {
-		this.gener = gener;
-	}
-	public String getQq() {
-		return qq;
-	}
-	public void setQq(String qq) {
-		this.qq = qq;
-	}
-	public String getWechat() {
-		return wechat;
-	}
-	public void setWechat(String wechat) {
-		this.wechat = wechat;
-	}
-	
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}	
 	
 	
 }
