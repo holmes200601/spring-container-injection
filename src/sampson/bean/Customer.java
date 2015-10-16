@@ -1,29 +1,28 @@
 package sampson.bean;
 
-public class Customer {
-	private String name;
-	private Integer age;
-	private String id;
+import java.util.List;
+import java.util.Set;
+
+public class Customer extends Person {
+	private Long id;
+	private List<SalesOrder> salesOrder;
+	private Set<Address> address;
 	
 	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public Integer getAge() {
-		return age;
-	}
-	public void setAge(Integer age) {
-		this.age = age;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
+	public List<SalesOrder> getSalesOrder() {
+		return salesOrder;
 	}
 	
+	public void setSalesOrder(List<SalesOrder> salesOrder) {
+		this.salesOrder = salesOrder;
+	}
+	
+	public Set<Address> getAddress() {
+		return address;
+	}
+	
+	public void setAddress(Set<Address> address) {
+		this.address = address;
+	}	
 	
 }

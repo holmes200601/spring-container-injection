@@ -1,0 +1,6 @@
+#ignored file
+.classpath
+.project
+target/
+bin/
+.settings
