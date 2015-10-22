@@ -11,7 +11,7 @@ import sampson.enumeration.Gender;
 public class ObjectFactory {
 	/* create customer */
 	public static Customer createCustomer(String name, String phone, Integer age, 
-			Gender gender, Long id, Set<Address> ads, List<SalesOrder> ods) {
-		return new Customer(name, phone, age, gender, id, ads, ods);
+			Gender gender, Long id, Set<Address> ads) {
+		return new Customer(name, phone, age, gender, id, ads);
 	}
 }

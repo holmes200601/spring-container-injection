@@ -17,16 +17,14 @@ public class Customer extends Person implements BeanNameAware{
 	private String beanName;
 	@Autowired
 	private ApplicationContext ctx;
-	private List<SalesOrder> salesOrder;
 	private Set<Address> address;
 	
 	public Customer(String name, String phone, Integer age, Gender gender, 
-					Long id, Set<Address> ads, List<SalesOrder> ods) {
+					Long id, Set<Address> ads) {
 		super(name, phone, age, gender);
 		
 		this.setId(id);
 		this.setAddress(ads);
-		this.setSalesOrder(ods);
 	}
 	
 	public Long getId() {
@@ -35,14 +33,6 @@ public class Customer extends Person implements BeanNameAware{
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public List<SalesOrder> getSalesOrder() {
-		return salesOrder;
-	}
-	
-	public void setSalesOrder(List<SalesOrder> salesOrder) {
-		this.salesOrder = salesOrder;
 	}
 	
 	public Set<Address> getAddress() {
@@ -56,9 +46,6 @@ public class Customer extends Person implements BeanNameAware{
 	public BigDecimal spendTotal() {
 		BigDecimal result = BigDecimal.ZERO;
 		
-		for (SalesOrder order : this.getSalesOrder()) {
-			result = result.add(order.orderTotal());
-		}
 		
 		return result;
 	}

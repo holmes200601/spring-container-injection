@@ -8,10 +8,12 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- include this line to use annotation  -->
-	<context:annotation-config />
+	<!-- <context:annotation-config base-package="sampson.bean"/> -->
+	<context:component-scan base-package="sampson.bean"></context:component-scan>
+	
 
 	<!-- define xml-base beans here -->
-    <bean id="customer" class="sampson.util.ObjectFactory" factory-method="createCustomer">
+    <bean id="sampson" class="sampson.util.ObjectFactory" factory-method="createCustomer">
         <constructor-arg index="0" value="sampson" />
         <constructor-arg index="1" value="13585971003" />
         <constructor-arg index="2" value="28" />
@@ -22,12 +24,6 @@
         		<ref bean="address1" />
         		<ref bean="address2" />
         	</set>
-        </constructor-arg>
-        <constructor-arg index="6">
-        	<list>
-        		<ref bean="order1" />
-        		<ref bean="order2" />
-        	</list>
         </constructor-arg>
     </bean>
 
@@ -43,6 +39,7 @@
 
 	<!-- two sales orders instances -->
 	<bean id="order1" class="sampson.bean.SalesOrder">
+		<qualifier value="sampson" />
 		<property name="id" value="1" />
 		<property name="saledProduct">
 			<map>
@@ -62,6 +59,7 @@
 		</property>
 	</bean>
 	<bean id="order2" class="sampson.bean.SalesOrder">
+		<qualifier value="sampson" />
 		<property name="id" value="2" />
 		<property name="saledProduct">
 			<map>
@@ -76,6 +74,34 @@
 						<ref bean="product2" />
 					</key>
 					<value>4</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="order3" class="sampson.bean.SalesOrder">
+		<qualifier value="fred" />
+		<property name="id" value="3" />
+		<property name="saledProduct">
+			<map>
+				<entry>
+					<key>
+						<ref bean="product1" />
+					</key>
+					<value>10</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="order4" class="sampson.bean.SalesOrder">
+		<qualifier value="fred" />
+		<property name="id" value="4" />
+		<property name="saledProduct">
+			<map>
+				<entry>
+					<key>
+						<ref bean="product2" />
+					</key>
+					<value>10</value>
 				</entry>
 			</map>
 		</property>

@@ -1,23 +1,33 @@
 package sampson.main;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import sampson.bean.Customer;
+import sampson.bean.Invoice;
+import sampson.bean.Product;
+import sampson.bean.Report;
+import sampson.config.AppConfig;
 
 public class Boost {
 	public static void main(String[] args) {
 		// Initialize spring container
-		FileSystemXmlApplicationContext ctx = null;
+		AnnotationConfigApplicationContext  ctx = null;
 		try {
-			ctx = new FileSystemXmlApplicationContext("Bean.xml");
+			ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+			// "sampson" profile
+			ctx.getEnvironment().setActiveProfiles("p1");
+			String[] beanNames = ctx.getBeanDefinitionNames();
+			Invoice invoice = (Invoice) ctx.getBean("invoice");
+			System.out.printf("***Sampson Profile***\n");
+			System.out.printf("\tInvoice: %1$s\n", invoice);
 			
-			Customer cs = (Customer) ctx.getBean("customer");
+			// "fred" profile
+			ctx.getEnvironment().setActiveProfiles("p2");
+			Report report = (Report) ctx.getBean("report");
+			System.out.printf("***Fred Profile***\n");
+			System.out.printf("\tReport: %1$s\n", report);
 			
-			System.out.printf("***Bean name of customer: %1$s***\n", cs.getBeanName());
-			
-			System.out.printf("***Context %1$s***\n", cs.getContext().toString());
-			
-			System.out.printf("***Customer %1$s spends %2$s***\n", cs.getName(), cs.spendTotal());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
